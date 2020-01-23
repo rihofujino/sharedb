@@ -5,8 +5,10 @@ var richText = require('rich-text');
 var WebSocket = require('ws');
 var WebSocketJSONStream = require('@teamwork/websocket-json-stream');
 
+const db = require('sharedb-mongo')('mongodb://localhost:27017/sampledb', {mongoOptions: {}});
+const backend = new ShareDB({db});
+
 ShareDB.types.register(richText.type);
-var backend = new ShareDB();
 createDoc(startServer);
 
 // Create initial document then fire callback
@@ -37,6 +39,6 @@ function startServer() {
     backend.listen(stream);
   });
 
-  server.listen(8080);
-  console.log('Listening on http://localhost:8080');
+  server.listen(4000);
+  console.log('Listening on http://localhost:4000');
 }

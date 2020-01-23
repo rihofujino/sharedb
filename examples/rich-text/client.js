@@ -23,7 +23,10 @@ doc.subscribe(function(err) {
   if (err) throw err;
   var quill = new Quill('#editor', {theme: 'snow'});
   quill.setContents(doc.data);
-  quill.on('text-change', function(delta, oldDelta, source) {
+    quill.on('text-change', function (delta, oldDelta, source) {
+      console.log(delta);
+      console.log(oldDelta);
+      console.log(source);
     if (source !== 'user') return;
     doc.submitOp(delta, {source: quill});
   });
